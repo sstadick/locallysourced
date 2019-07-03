@@ -9,6 +9,17 @@ Things that need to compile, or other require their own project dirs, can be fou
 One off scripts just live in src/scripts
 A make file might be used to make a bin dir or something. TBD
 
+## Build
+
+In top level, just run
+
+```
+make
+```
+
+## Deps
+- cargo / rust toolchain
+
 ## Tools
 
 ### transpose
