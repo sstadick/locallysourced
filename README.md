@@ -15,8 +15,14 @@ A make file might be used to make a bin dir or something. TBD
 
 Flip a file from rows X columns to columns X rows.  Ex:
 
-head1   head2   head3           head1   val1    val5
-val1     val2    val3     =>    head2   val2    val6
-val5     val6    val7           head3   val3    val7
+|head1|head2|head3|       
+|-----|-----|-----|         
+|val1|val2|val3|     
+|val5|val6|val7| 
 
+to:
 
+|head1|val1|val5|
+|-----|----|----| 
+|head2|val2|val6|
+|head3|val3|val7|
