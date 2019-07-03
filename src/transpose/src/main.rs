@@ -5,6 +5,23 @@ use std::fs::File;
 use std::io::{self, BufRead, BufReader};
 use std::string::String;
 
+// This macro is stolen and prevents println! from panicing when pipes are broken
+// https://www.reddit.com/r/rust/comments/60erzc/hey_rustaceans_got_an_easy_question_ask_here/df8swpz/
+// println!() calls print!() internally, so that's the only macro we have to override
+macro_rules! print (
+    // The extra scope is necessary so we don't leak imports
+    ($($arg:tt)*) => ({
+        // The `write!()` macro is written so it can use `std::io::Write`
+        // or `std::fmt::Write`, this import sets which to use
+        use std::io::{self, Write};
+        if let Err(e) = write!(io::stdout(), $($arg)*) {
+            // Optionally write the error to stderr
+            ::std::process::exit(0);
+        }
+    })
+);
+
+
 fn main() -> io::Result<()> {
     //TODO: Add a start end specifier
     let matches = App::new("transpose")
